@@ -1,6 +1,6 @@
 import React from "react";
-import { Post } from "../../modals/Post";
-import { Comment } from "../../modals/Comment";
+import { Post } from "../../models/Post";
+import { Comment } from "../../models/Comment";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 
 interface PostCardProps {

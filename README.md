@@ -61,8 +61,7 @@ npm test
 ## Project Structure
 
 - **`src/app`**: Contains the main application components and styles.
-- **`src/modals`**: Contains TypeScript interfaces for data models.
-- **`src/pages`**: Contains the Next.js pages, including API routes.
-- **`src/pages/api`**: Contains API endpoints for fetching data.
-- **`src/pages/dashboard.tsx`**: The main dashboard page for viewing freelancers.
-- **`src/pages/portfolio.tsx`**: The portfolio page for viewing freelancer posts and comments.
+- **`src/app/api`**: Contains the API routes for the application.
+- **`src/models`**: Contains interfaces for data models.
+- **`src/utils`**: Contains utility functions for the application.
+- **`src/components`**: Contains reusable/general components.

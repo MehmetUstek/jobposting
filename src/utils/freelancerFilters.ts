@@ -1,4 +1,4 @@
-import { Freelancer } from "../modals/Freelancer";
+import { Freelancer } from "../models/Freelancer";
 
 interface FilterCriteria {
   searchName: string;

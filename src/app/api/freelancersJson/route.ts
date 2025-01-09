@@ -1,4 +1,4 @@
-import { Freelancer } from "@/modals/Freelancer";
+import { Freelancer } from "@/models/Freelancer";
 import { NextResponse } from "next/server";
 
 const freelancersPlaceholder: Freelancer[] = [

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { Comment } from "@/modals/Comment";
+import { Comment } from "@/models/Comment";
 
 const commentsPlaceholder: Comment[] = [
   { id: 1, postId: 1, body: "Harika bir post!" },

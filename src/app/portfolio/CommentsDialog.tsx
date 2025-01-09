@@ -9,7 +9,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { Comment } from "../../modals/Comment";
+import { Comment } from "../../models/Comment";
 
 interface CommentsDialogProps {
   open: boolean;

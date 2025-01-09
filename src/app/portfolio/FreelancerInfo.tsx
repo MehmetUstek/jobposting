@@ -1,5 +1,5 @@
 import React from "react";
-import { Freelancer } from "../../modals/Freelancer";
+import { Freelancer } from "../../models/Freelancer";
 import { Card, CardContent, Box, Typography } from "@mui/material";
 import CustomAvatar from "../../components/CustomAvatar";
 

@@ -1,4 +1,4 @@
-import { Post } from "@/modals/Post";
+import { Post } from "@/models/Post";
 import { NextResponse } from "next/server";
 
 const postsPlaceholder: Post[] = [

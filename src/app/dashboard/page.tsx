@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Freelancer } from "../../modals/Freelancer";
+import { Freelancer } from "../../models/Freelancer";
 import {
   Container,
   TextField,

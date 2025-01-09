@@ -1,4 +1,4 @@
-import { Freelancer } from "@/modals/Freelancer";
+import { Freelancer } from "@/models/Freelancer";
 import { filterFreelancers } from "../freelancerFilters";
 
 describe("Dashboard filtering logic", () => {

@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import { Post } from "../../modals/Post";
-import { Freelancer } from "../../modals/Freelancer";
-import { Comment } from "../../modals/Comment";
+import { Post } from "../../models/Post";
+import { Freelancer } from "../../models/Freelancer";
+import { Comment } from "../../models/Comment";
 import {
   Container,
   Typography,
