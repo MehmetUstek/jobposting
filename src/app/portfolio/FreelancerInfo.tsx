@@ -8,6 +8,8 @@ interface FreelancerInfoProps {
 }
 
 const FreelancerInfo: React.FC<FreelancerInfoProps> = ({ freelancer }) => {
+  if (!freelancer) return null;
+
   return (
     <Card sx={{ mb: 3 }}>
       <CardContent>
@@ -22,7 +24,7 @@ const FreelancerInfo: React.FC<FreelancerInfoProps> = ({ freelancer }) => {
               Website: {freelancer.website}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              City: {freelancer.city}
+              City: {freelancer.address.city}
             </Typography>
           </Box>
         </Box>

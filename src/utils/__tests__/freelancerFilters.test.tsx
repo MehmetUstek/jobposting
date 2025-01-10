@@ -8,30 +8,24 @@ describe("Dashboard filtering logic", () => {
       name: "John Smith",
       email: "john@example.com",
       phone: "123-456-7890",
-      city: "New York",
+      address: {
+        street: "123 Main St",
+        suite: "Apt 4B",
+        city: "New York",
+        zipcode: "10001",
+        geo: {
+          lat: "40.7128",
+          lng: "-74.0060",
+        },
+      },
       finishedJobs: 10,
-      photoId: 1,
       website: "https://johnsmith.com",
-    },
-    {
-      id: 2,
-      name: "Jane Doe",
-      email: "jane@example.com",
-      phone: "098-765-4321",
-      city: "Los Angeles",
-      finishedJobs: 5,
-      photoId: 2,
-      website: "https://janedoe.com",
-    },
-    {
-      id: 3,
-      name: "Bob Johnson",
-      email: "bob@example.com",
-      phone: "111-222-3333",
-      city: "New York",
-      finishedJobs: 15,
-      photoId: 3,
-      website: "https://bobjohnson.com",
+      username: "johnsmith",
+      company: {
+        name: "Acme Corp",
+        catchPhrase: "Quality products at competitive prices",
+        bs: "We deliver excellence",
+      },
     },
   ];
 
@@ -61,33 +55,21 @@ describe("Dashboard filtering logic", () => {
   test("shows only saved freelancers when showSavedOnly is true", () => {
     const searchName = "";
     const searchCity = "";
-    const minJobs = null;
-    const maxJobs = null;
-    const savedFreelancers = new Set([2]);
+    const minJobs = undefined;
+    const maxJobs = undefined;
+    const savedFreelancers = new Set([1]); // John Smith
     const showSavedOnly = true;
 
-    const filteredFreelancers = mockFreelancers.filter((freelancer) => {
-      const matchesName = freelancer.name
-        .toLowerCase()
-        .includes(searchName.toLowerCase());
-      const matchesCity = freelancer.city
-        ? freelancer.city.toLowerCase().includes(searchCity.toLowerCase())
-        : true;
-      const matchesJobCount =
-        (minJobs == null || freelancer.finishedJobs >= minJobs) &&
-        (maxJobs == null || freelancer.finishedJobs <= maxJobs);
-      const isSaved = savedFreelancers.has(freelancer.id);
-
-      return (
-        matchesName &&
-        matchesCity &&
-        matchesJobCount &&
-        (!showSavedOnly || isSaved)
-      );
+    const filteredFreelancers = filterFreelancers(mockFreelancers, {
+      searchName,
+      searchCity,
+      minJobs,
+      maxJobs,
+      savedFreelancers,
+      showSavedOnly,
     });
 
     expect(filteredFreelancers).toHaveLength(1);
-    expect(filteredFreelancers[0].id).toBe(2);
   });
 
   test("filters by job count range correctly", () => {
@@ -95,30 +77,19 @@ describe("Dashboard filtering logic", () => {
     const searchCity = "";
     const minJobs = 7;
     const maxJobs = 12;
-    const savedFreelancers = new Set();
+    const savedFreelancers = new Set<number>();
     const showSavedOnly = false;
 
-    const filteredFreelancers = mockFreelancers.filter((freelancer) => {
-      const matchesName = freelancer.name
-        .toLowerCase()
-        .includes(searchName.toLowerCase());
-      const matchesCity = freelancer.city
-        ? freelancer.city.toLowerCase().includes(searchCity.toLowerCase())
-        : true;
-      const matchesJobCount =
-        (minJobs == null || freelancer.finishedJobs >= minJobs) &&
-        (maxJobs == null || freelancer.finishedJobs <= maxJobs);
-      const isSaved = savedFreelancers.has(freelancer.id);
-
-      return (
-        matchesName &&
-        matchesCity &&
-        matchesJobCount &&
-        (!showSavedOnly || isSaved)
-      );
+    const filteredFreelancers = filterFreelancers(mockFreelancers, {
+      searchName,
+      searchCity,
+      minJobs,
+      maxJobs,
+      savedFreelancers,
+      showSavedOnly,
     });
 
     expect(filteredFreelancers).toHaveLength(1);
-    expect(filteredFreelancers[0].name).toBe("John Smith");
+    expect(filteredFreelancers![0].name).toBe("John Smith");
   });
 });

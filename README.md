@@ -61,7 +61,7 @@ npm test
 ## Project Structure
 
 - **`src/app`**: Contains the main application components and styles.
-- **`src/app/api`**: Contains the API routes for the application.
+- **`src/app/api`**: Contains the API routes for the application. By default, the API routes are set to fetch data from the JSONPlaceholder API at `https://jsonplaceholder.typicode.com/`. But you can change it to /api/ to fetch data from the local json files.
 - **`src/models`**: Contains interfaces for data models.
 - **`src/utils`**: Contains utility functions for the application.
 - **`src/components`**: Contains reusable/general components.

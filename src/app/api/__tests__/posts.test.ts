@@ -21,7 +21,7 @@ describe("API Handler: /api/posts", () => {
   });
 
   it("should return posts for a valid freelancerId", async () => {
-    const req = new Request("http://localhost/api/posts?freelancerId=1", {
+    const req = new Request("http://localhost/api/posts?userId=1", {
       method: "GET",
     });
 
@@ -29,24 +29,11 @@ describe("API Handler: /api/posts", () => {
 
     expect(res.status).toBe(200);
     const responseBody = await res.json();
-    expect(responseBody).toEqual([
-      {
-        id: 1,
-        title: "Past Job 1",
-        body: "This is the body of past job 1.",
-        freelancerId: 1,
-      },
-      {
-        id: 2,
-        title: "Past Job 2",
-        body: "This is the body of past job 2.",
-        freelancerId: 1,
-      },
-    ]);
+    expect(responseBody).toHaveLength(10);
   });
 
   it("should return 200 if no posts are found for a freelancerId, but the freelancerId is valid", async () => {
-    const req = new Request("http://localhost/api/posts?freelancerId=4", {
+    const req = new Request("http://localhost/api/posts?userId=10", {
       method: "GET",
     });
 

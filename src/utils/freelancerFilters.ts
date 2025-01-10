@@ -17,15 +17,18 @@ export const filterFreelancers = (
     const matchesName = freelancer.name
       .toLowerCase()
       .includes(criteria.searchName.toLowerCase());
-    const matchesCity = freelancer.city
-      ? freelancer.city
+    const matchesCity = freelancer.address.city
+      ? freelancer.address.city
           .toLowerCase()
           .includes(criteria.searchCity.toLowerCase())
       : true;
     const matchesJobCount =
       (criteria.minJobs == null ||
-        freelancer.finishedJobs >= criteria.minJobs) &&
-      (criteria.maxJobs == null || freelancer.finishedJobs <= criteria.maxJobs);
+        (freelancer.finishedJobs != null &&
+          freelancer.finishedJobs >= criteria.minJobs)) &&
+      (criteria.maxJobs == null ||
+        (freelancer.finishedJobs != null &&
+          freelancer.finishedJobs <= criteria.maxJobs));
     const isSaved = criteria.savedFreelancers.has(freelancer.id);
 
     return (

@@ -52,8 +52,14 @@ const Portfolio: React.FC = () => {
     setError(null);
 
     axios
-      .get(`/api/freelancersJson?id=${freelancerId}`)
-      .then((response) => setFreelancer(response.data))
+      .get(`https://jsonplaceholder.typicode.com/users?id=${freelancerId}`)
+      .then((response) => {
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setFreelancer(response.data[0]);
+        } else {
+          setError("Freelancer not found.");
+        }
+      })
       .catch((error) => {
         console.error("Error fetching freelancer:", error);
         if (error.response?.status === 400) {
@@ -68,13 +74,14 @@ const Portfolio: React.FC = () => {
       });
 
     axios
-      .get(`/api/posts?freelancerId=${freelancerId}`)
+      .get(`https://jsonplaceholder.typicode.com/posts?userId=${freelancerId}`)
       .then((response) => {
         setPosts(response.data);
-        // Fetch comments for each post
         response.data.forEach((post: Post) => {
           axios
-            .get(`/api/comments?postId=${post.id}`)
+            .get(
+              `https://jsonplaceholder.typicode.com/comments?postId=${post.id}`
+            )
             .then((response) => {
               setComments((prevComments) => ({
                 ...prevComments,

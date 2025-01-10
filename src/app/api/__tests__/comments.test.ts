@@ -18,7 +18,7 @@ describe("API Handler: /api/comments", () => {
 
     expect(res.status).toBe(200);
     const responseBody = await res.json();
-    expect(responseBody).toHaveLength(4);
+    expect(responseBody).toHaveLength(500);
   });
 
   it("should return filtered comments for a specific postId", async () => {
@@ -30,11 +30,19 @@ describe("API Handler: /api/comments", () => {
 
     expect(res.status).toBe(200);
     const responseBody = await res.json();
-    expect(responseBody).toHaveLength(2);
+    expect(responseBody).toHaveLength(5);
     expect(responseBody).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ postId: 1, body: "Harika bir post!" }),
-        expect.objectContaining({ postId: 1, body: "Çok teşekkürler." }),
+        expect.objectContaining({
+          postId: 1,
+          name: "id labore ex et quam laborum",
+          email: "Eliseo@gardner.biz",
+        }),
+        expect.objectContaining({
+          postId: 1,
+          name: "quo vero reiciendis velit similique earum",
+          email: "Jayne_Kuhic@sydney.com",
+        }),
       ])
     );
   });

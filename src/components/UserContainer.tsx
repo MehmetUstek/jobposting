@@ -8,16 +8,10 @@ import {
   Button,
 } from "@mui/material";
 import CustomAvatar from "@/components/CustomAvatar";
+import { Freelancer } from "@/models/Freelancer";
 
 interface UserContainerProps {
-  freelancer: {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    city: string;
-    finishedJobs: number;
-  };
+  freelancer: Freelancer;
   handleViewPortfolio: (freelancerId: number) => void;
   handleSaveFreelancer: (freelancerId: number) => void;
   isSaved: boolean;
@@ -54,7 +48,7 @@ const UserContainer: React.FC<UserContainerProps> = ({
             Phone: {freelancer.phone}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            City: {freelancer.city}
+            City: {freelancer.address.city}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Finished Jobs: {freelancer.finishedJobs}

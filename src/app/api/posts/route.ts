@@ -1,36 +1,12 @@
 import { Post } from "@/models/Post";
 import { NextResponse } from "next/server";
+import postsData from "./posts.json";
 
-const postsPlaceholder: Post[] = [
-  {
-    id: 1,
-    title: "Past Job 1",
-    body: "This is the body of past job 1.",
-    freelancerId: 1,
-  },
-  {
-    id: 2,
-    title: "Past Job 2",
-    body: "This is the body of past job 2.",
-    freelancerId: 1,
-  },
-  {
-    id: 3,
-    title: "Past Job 3",
-    body: "This is the body of past job 3.",
-    freelancerId: 2,
-  },
-  {
-    id: 5,
-    title: "Past Job 5",
-    body: "This is the body of past job 5.",
-    freelancerId: 5,
-  },
-];
+const postsPlaceholder: Post[] = postsData;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const freelancerId = searchParams.get("freelancerId");
+  const freelancerId = searchParams.get("userId");
 
   if (freelancerId) {
     const freelancerIdNumber = Number(freelancerId);
@@ -43,7 +19,7 @@ export async function GET(request: Request) {
     }
 
     const filteredPosts = postsPlaceholder.filter(
-      (post) => post.freelancerId === freelancerIdNumber
+      (post) => post.userId === freelancerIdNumber
     );
 
     return NextResponse.json(filteredPosts, { status: 200 });

@@ -31,8 +31,19 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("/api/freelancersJson")
-      .then((response) => setFreelancers(response.data))
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then(async (response) => {
+        const users = response.data;
+        const freelancersWithJobNumbers = await Promise.all(
+          users.map(async (user: Freelancer) => {
+            const postsResponse = await axios.get(
+              `https://jsonplaceholder.typicode.com/posts?userId=${user.id}`
+            );
+            return { ...user, finishedJobs: postsResponse.data.length };
+          })
+        );
+        setFreelancers(freelancersWithJobNumbers);
+      })
       .catch((error) => {
         console.error("Error fetching freelancers:", error);
         setError("Failed to load freelancers. Please try again later.");
